@@ -120,4 +120,4 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 })({"epB2":[function(require,module,exports) {
 console.log("hi");
 },{}]},{},["epB2"], null)
-//# sourceMappingURL=https://github.com/clang1996/pikaqiu/tree/master/dist/main.49130c53.js.map
+//# sourceMappingURL=main.49130c53.js.map
