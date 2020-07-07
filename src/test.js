@@ -1,10 +1,10 @@
-* {
+let string = `.skin* {
     box-sizing: border-box;
     margin: 0;
     padding: 0
 }
 
-::after,
+.skin::after,
 ::before {
     box-sizing: border-box;
 }
@@ -21,7 +21,7 @@
     /* border: 1px solid red; */
     width: 300px;
     height: 500px;
-    top: 150px;
+    top: 300px;
     left: 50%;
     margin-left: -150px;
 }
@@ -161,4 +161,47 @@
     border-top-left-radius: 105px 170px;
     border-top-right-radius: 105px 170px;
     z-index: 1;
+}`
+let n = 1
+demo.innerText = string.substring(0, n) //写文本
+demo1.innerHTML = string.substring(0, n) //写CSS
+
+let time = 100
+const run = () => {
+    n += 1
+    if (n > string.length) {
+        window.clearInterval(id)
+        return
+    }
+    demo.innerText = string.substring(0, n)
+    demo1.innerHTML = string.substring(0, n)
+    demo.scrollTop = demo.scrollHeight
+}
+
+const play = () => { return setInterval(run, time) } //setInterval第一个参数不加括号
+
+const pause = () => { window.clearInterval(id) }
+
+let id = play()
+
+Pause.onclick = () => {
+    pause()
+}
+Play.onclick = () => {
+    id = play()
+}
+Slow.onclick = () => {
+    pause()
+    time = 300
+    id = play()
+}
+Normal.onclick = () => {
+    pause()
+    time = 100
+    id = play()
+}
+Fast.onclick = () => {
+    pause()
+    time = 0
+    id = play()
 }

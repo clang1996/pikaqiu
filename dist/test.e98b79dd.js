@@ -117,79 +117,65 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"C:/Users/Administrator/AppData/Local/Yarn/Data/global/node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
-var bundleURL = null;
+})({"test.js":[function(require,module,exports) {
+var string = ".skin* {\n    box-sizing: border-box;\n    margin: 0;\n    padding: 0\n}\n\n.skin::after,\n::before {\n    box-sizing: border-box;\n}\n\n.skin {\n    position: relative;\n    min-height: 100vh;\n    width: 100%;\n    background: rgb(254, 228, 51);\n}\n\n.wrapper {\n    position: fixed;\n    /* border: 1px solid red; */\n    width: 300px;\n    height: 500px;\n    top: 300px;\n    left: 50%;\n    margin-left: -150px;\n}\n\n.nose {\n    /*\u505A\u6247\u5F62*/\n    position: absolute;\n    left: 50%;\n    top: 30px;\n    margin-left: -10px;\n    width: 0;\n    height: 0;\n    border: 10px solid transparent;\n    border-top-color: #000;\n    border-radius: 10px;\n}\n\n.eye {\n    position: absolute;\n    border: 2px solid black;\n    width: 55px;\n    height: 55px;\n    left: 50%;\n    top: 0px;\n    margin-left: -28px;\n    border-radius: 50%;\n    background-color: #2e2e2e;\n}\n\n.eye::before {\n    display: block;\n    content: '';\n    width: 25px;\n    height: 25px;\n    border-radius: 50%;\n    background: white;\n    border: 2px solid #000;\n    margin-left: 5px;\n    margin-top: 2px;\n}\n\n.eye.left {\n    transform: translate(-90px);\n}\n\n.eye.right {\n    transform: translate(90px);\n}\n\n.face {\n    border: 3px solid black;\n    width: 80px;\n    height: 80px;\n    border-radius: 50%;\n    background-color: red;\n    position: absolute;\n    top: 100px;\n    left: 50%;\n}\n\n.face.left {\n    margin-left: 80px;\n}\n\n.face.right {\n    margin-left: -170px;\n}\n\n.mouth {\n    /* border: 1px solid green; */\n    width: 200px;\n    height: 200px;\n    position: absolute;\n    left: 50%;\n    top: 75px;\n    margin-left: -100px;\n}\n\n.mouth::before {\n    content: '';\n    display: block;\n    border: 3px solid black;\n    background-color: rgb(254, 228, 51);\n    border-top: transparent;\n    border-right: transparent;\n    border-radius: 0 0 0 25px;\n    transform: rotate(-20deg);\n    width: 90px;\n    height: 25px;\n    position: absolute;\n    top: -10px;\n    left: 50%;\n    margin-left: -91px;\n    z-index: 1;\n}\n\n.mouth::after {\n    content: '';\n    display: block;\n    border: 3px solid black;\n    background-color: rgb(254, 228, 51);\n    border-top: transparent;\n    border-left: transparent;\n    border-radius: 0 0 25px 0;\n    transform: rotate(20deg);\n    width: 90px;\n    height: 25px;\n    position: absolute;\n    top: -10px;\n    left: 50%;\n    z-index: 1;\n}\n\n.mouth1 {\n    border: 2px solid black;\n    background-color: #cc4143;\n    position: absolute;\n    width: 130px;\n    height: 140px;\n    left: 50%;\n    margin-left: -68px;\n    top: -3px;\n    border-bottom-left-radius: 200px 400px;\n    border-bottom-right-radius: 200px 400px;\n    overflow: hidden;\n}\n\n.mouth2 {\n    /* border: 2px solid black; */\n    background-color: #dd666a;\n    position: absolute;\n    width: 180px;\n    height: 150px;\n    left: 50%;\n    margin-left: -90px;\n    top: 20px;\n    border-top-left-radius: 105px 170px;\n    border-top-right-radius: 105px 170px;\n    z-index: 1;\n}";
+var n = 1;
+demo.innerText = string.substring(0, n); //写文本
 
-function getBundleURLCached() {
-  if (!bundleURL) {
-    bundleURL = getBundleURL();
-  }
+demo1.innerHTML = string.substring(0, n); //写CSS
 
-  return bundleURL;
-}
+var time = 100;
 
-function getBundleURL() {
-  // Attempt to find the URL of the current script and use that as the base URL
-  try {
-    throw new Error();
-  } catch (err) {
-    var matches = ('' + err.stack).match(/(https?|file|ftp|chrome-extension|moz-extension):\/\/[^)\n]+/g);
+var run = function run() {
+  n += 1;
 
-    if (matches) {
-      return getBaseURL(matches[0]);
-    }
-  }
-
-  return '/';
-}
-
-function getBaseURL(url) {
-  return ('' + url).replace(/^((?:https?|file|ftp|chrome-extension|moz-extension):\/\/.+)\/[^/]+$/, '$1') + '/';
-}
-
-exports.getBundleURL = getBundleURLCached;
-exports.getBaseURL = getBaseURL;
-},{}],"C:/Users/Administrator/AppData/Local/Yarn/Data/global/node_modules/parcel-bundler/src/builtins/css-loader.js":[function(require,module,exports) {
-var bundle = require('./bundle-url');
-
-function updateLink(link) {
-  var newLink = link.cloneNode();
-
-  newLink.onload = function () {
-    link.remove();
-  };
-
-  newLink.href = link.href.split('?')[0] + '?' + Date.now();
-  link.parentNode.insertBefore(newLink, link.nextSibling);
-}
-
-var cssTimeout = null;
-
-function reloadCSS() {
-  if (cssTimeout) {
+  if (n > string.length) {
+    window.clearInterval(id);
     return;
   }
 
-  cssTimeout = setTimeout(function () {
-    var links = document.querySelectorAll('link[rel="stylesheet"]');
+  demo.innerText = string.substring(0, n);
+  demo1.innerHTML = string.substring(0, n);
+  demo.scrollTop = demo.scrollHeight;
+};
 
-    for (var i = 0; i < links.length; i++) {
-      if (bundle.getBaseURL(links[i].href) === bundle.getBundleURL()) {
-        updateLink(links[i]);
-      }
-    }
+var play = function play() {
+  return setInterval(run, time);
+}; //setInterval第一个参数不加括号
 
-    cssTimeout = null;
-  }, 50);
-}
 
-module.exports = reloadCSS;
-},{"./bundle-url":"C:/Users/Administrator/AppData/Local/Yarn/Data/global/node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"style.css":[function(require,module,exports) {
-var reloadCSS = require('_css_loader');
+var pause = function pause() {
+  window.clearInterval(id);
+};
 
-module.hot.dispose(reloadCSS);
-module.hot.accept(reloadCSS);
-},{"_css_loader":"C:/Users/Administrator/AppData/Local/Yarn/Data/global/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"C:/Users/Administrator/AppData/Local/Yarn/Data/global/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+var id = play();
+
+Pause.onclick = function () {
+  pause();
+};
+
+Play.onclick = function () {
+  id = play();
+};
+
+Slow.onclick = function () {
+  pause();
+  time = 300;
+  id = play();
+};
+
+Normal.onclick = function () {
+  pause();
+  time = 100;
+  id = play();
+};
+
+Fast.onclick = function () {
+  pause();
+  time = 0;
+  id = play();
+};
+},{}],"../../../../../AppData/Local/Yarn/Data/global/node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -217,7 +203,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52357" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "14861" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -393,5 +379,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["C:/Users/Administrator/AppData/Local/Yarn/Data/global/node_modules/parcel-bundler/src/builtins/hmr-runtime.js"], null)
-//# sourceMappingURL=/style.e308ff8e.js.map
+},{}]},{},["../../../../../AppData/Local/Yarn/Data/global/node_modules/parcel/src/builtins/hmr-runtime.js","test.js"], null)
+//# sourceMappingURL=/test.e98b79dd.js.map
